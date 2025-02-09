@@ -1,16 +1,11 @@
-﻿// See https://aka.ms/new-console-template for more information
-//Console.WriteLine("Hello, World!");
+﻿using Smart_Home;
 
-using Rooms;
+var home = new Home("My Home");
 
-var room = new Room("Living Room");
-room.AddDevice();
-// Console.WriteLine();
-// room.ShowAllDevicesInfo();
+while (true)
+{
+    home.ShowOperations();
 
-Console.WriteLine();
-
-room.ShowDeviceOperations();
-
-Console.WriteLine();
-room.ShowAllDevicesInfo();
+    Console.WriteLine();
+    Console.WriteLine();
+}

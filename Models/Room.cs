@@ -36,17 +36,18 @@ namespace Rooms
                 return;
 
             Console.WriteLine("Enter device name: ");
-            string name = Console.ReadLine();
-            Console.WriteLine("Enter device IP address: ");
-            string ipaddress = Console.ReadLine();
-            Console.WriteLine("Enter device MAC address: ");
-            string macaddress = Console.ReadLine();
-
-            if (name == "" || ipaddress == "" || macaddress == "")
+            string name = Console.ReadLine() ?? "";
+            if (name == "")
             {
-                Console.WriteLine("Invalid input data.");
+                Console.WriteLine("Device name cannot be empty.");
                 return;
             }
+
+            Console.WriteLine("Enter device IP address: ");
+            string ipaddress = Console.ReadLine() ?? "127.0.0.1";
+            Console.WriteLine("Enter device MAC address: ");
+            string macaddress = Console.ReadLine() ?? "00:00:00:00:00:00";
+
 
             switch (input)
             {
@@ -130,6 +131,43 @@ namespace Rooms
                 return;
             }
         }
+
+        public void ShowOperations()
+        {
+            Console.WriteLine("Room operations: ");
+            Console.WriteLine("1. Show info");
+            Console.WriteLine("2. Change name");
+            Console.WriteLine("3. Add device");
+            Console.WriteLine("4. Edit device");
+            Console.WriteLine("0. Exit");
+            Console.WriteLine("Enter your choice: ");
+
+            string input = Console.ReadLine() ?? "";
+
+            if (input == "0")
+                return;
+
+            switch (input)
+            {
+                case "1":
+                    ShowInfo();
+                    break;
+                case "2":
+                    ChangeRoomName();
+                    break;
+                case "3":
+                    AddDevice();
+                    break;
+                case "4":
+                    ShowDeviceOperations();
+                    break;
+                default:
+                    Console.WriteLine("Invalid input.");
+                    break;
+            }
+        }
+
+        public string GetName() => Name;
 
     }
 
