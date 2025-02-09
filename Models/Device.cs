@@ -1,41 +1,50 @@
-public abstract class Device
+namespace Devices
 {
-    protected string Name { get; set; }
-    protected string IPaddress { get; set; }
-    protected string MACaddress { get; set; }
-    protected bool IsON { get; set; }
-
-    public Device(string name, string ipaddress, string macaddress, bool isON = false)
+    public abstract class Device
     {
-        Name = name;
-        IPaddress = ipaddress;
-        MACaddress = macaddress;
-        IsON = isON;
-    }
+        protected string Name { get; set; }
+        protected string IPaddress { get; set; }
+        protected string MACaddress { get; set; }
+        protected bool IsON { get; set; }
 
-    public abstract void PowerON();
-    public abstract void PowerOFF();
-    public virtual void ShowInfo()
-    {
-        Console.WriteLine($"Name: {Name}");
-        Console.WriteLine($"IP address: {IPaddress}");
-        Console.WriteLine($"MAC address: {MACaddress}");
-        Console.WriteLine($"Device is {IsON ? 'ON' : 'OFF'}");
-    }
-    public abstract void ShowOperations();
-
-    public virtual void ChangeName()
-    {
-        Console.WriteLine("Enter new name: ");
-        string input = Console.ReadLine();
-        if (input != "")
+        public Device(string name, string ipaddress, string macaddress, bool isON = false)
         {
-            Name = input;
-            Console.WriteLine($"Name changed to {Name}");
+            Name = name;
+            IPaddress = ipaddress;
+            MACaddress = macaddress;
+            IsON = isON;
         }
-        else
+
+        public abstract void PowerON();
+        public abstract void PowerOFF();
+        public virtual void ShowInfo()
         {
-            Console.WriteLine("Name cannot be empty");
+            Console.WriteLine($"Name: {Name}");
+            Console.WriteLine($"IP address: {IPaddress}");
+            Console.WriteLine($"MAC address: {MACaddress}");
+            Console.WriteLine($"Device is {(IsON ? "ON" : "OFF")}");
         }
+        public abstract void ShowOperations();
+
+        public virtual void ChangeName()
+        {
+            Console.WriteLine("Enter new name: ");
+            string input = Console.ReadLine();
+            if (input != "")
+            {
+                Name = input;
+                Console.WriteLine($"Name changed to {Name}");
+            }
+            else
+            {
+                Console.WriteLine("Name cannot be empty");
+            }
+        }
+
+        public virtual string GetName()
+        {
+            return Name;
+        }
+
     }
 }
